@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <display-name>openid-servlet</display-name>
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>org.xsalefter.openidservlet.servlet.HomeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Chooser</servlet-name>
+        <servlet-class>org.xsalefter.openidservlet.servlet.OpenIDChooserServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayServlet</servlet-name>
+        <servlet-class>org.xsalefter.openidservlet.servlet.DisplayServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Chooser</servlet-name>
+        <url-pattern>/choose</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayServlet</servlet-name>
+        <url-pattern>/display</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
