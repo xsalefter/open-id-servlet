@@ -6,24 +6,40 @@
         <servlet-class>org.xsalefter.openidservlet.servlet.HomeServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Chooser</servlet-name>
-        <servlet-class>org.xsalefter.openidservlet.servlet.OpenIDChooserServlet</servlet-class>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>org.xsalefter.openidservlet.servlet.LoginServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DisplayServlet</servlet-name>
+        <servlet-name>Display</servlet-name>
         <servlet-class>org.xsalefter.openidservlet.servlet.DisplayServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>org.xsalefter.openidservlet.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RedirectAfterLogin</servlet-name>
+        <servlet-class>org.xsalefter.openidservlet.servlet.RedirectAfterLoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Chooser</servlet-name>
-        <url-pattern>/choose</url-pattern>
+        <servlet-name>Display</servlet-name>
+        <url-pattern>/display</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DisplayServlet</servlet-name>
-        <url-pattern>/display</url-pattern>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RedirectAfterLogin</servlet-name>
+        <url-pattern>/redirect-after-login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

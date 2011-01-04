@@ -14,6 +14,14 @@
     <h1>Open ID Application</h1>
     <span>
         <a href="<c:url value='/home' />">Home</a> &nbsp;
-        <a href="<c:url value='/choose?providerId=google' />">Google Login</a> &nbsp;
-        <a href="<c:url value='/choose?providerId=yahoo!' />">Yahoo! Login</a> &nbsp;
+        
+        <c:if test='<%= session.getAttribute("authentication") == null %>'>
+            <a href="<c:url value='/login?providerId=google' />">Google Login</a> &nbsp;
+            <a href="<c:url value='/login?providerId=yahoo!' />">Yahoo! Login</a> &nbsp;
+        </c:if>
+
+        <c:if test='<%= session.getAttribute("authentication") != null %>'>
+            <a href="<c:url value='/display' />">Display</a> &nbsp;
+            <a href="<c:url value='/logout' />">Logout</a>
+        </c:if>
     </span>

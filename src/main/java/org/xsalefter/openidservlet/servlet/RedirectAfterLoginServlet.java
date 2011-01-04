@@ -1,22 +1,24 @@
 package org.xsalefter.openidservlet.servlet;
 
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.xsalefter.openidservlet.service.OpenIDService;
 
 /**
  * @author xsalefter
  */
-public class DisplayServlet extends HttpServlet {
+public class RedirectAfterLoginServlet extends HttpServlet {
+
+    private OpenIDService service = new OpenIDService();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/display.jsp");
-        rd.forward(request, response);
-    }
+    throws ServletException, IOException {
+        this.service.initializeUser(request);
+        response.sendRedirect("http://localhost:8080/openid-servlet/display");
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -28,9 +30,9 @@ public class DisplayServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
-    }
+    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -41,7 +43,7 @@ public class DisplayServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -53,4 +55,5 @@ public class DisplayServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
