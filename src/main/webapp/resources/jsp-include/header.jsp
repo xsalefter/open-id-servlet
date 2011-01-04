@@ -21,7 +21,10 @@
         </c:if>
 
         <c:if test='<%= session.getAttribute("authentication") != null %>'>
-            <a href="<c:url value='/display' />">Display</a> &nbsp;
-            <a href="<c:url value='/logout' />">Logout</a>
+            <a href="<c:url value='/display' />">Welcome, ${authentication.email}</a> &nbsp;
+            <a href="<c:url value='/logout' />">Logout</a> &nbsp; 
+            <a href="<c:url value='/logout'><c:param name="providerId" value="${provider_name}" /></c:url>">
+                Logout with ${provider_name}
+            </a>
         </c:if>
     </span>

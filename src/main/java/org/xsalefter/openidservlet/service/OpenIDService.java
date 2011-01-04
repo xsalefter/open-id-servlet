@@ -15,10 +15,12 @@ public class OpenIDService {
 
     private Logger logger = LoggerFactory.getLogger(OpenIDService.class);
 
+    public static final String HOME_PAGE = "http://localhost:8080/openid-servlet";
     public static final String LOGGED_IN_URL = "http://localhost:8080/openid-servlet/redirect-after-login";
     public static final String MAC_KEY = "openid_mac";
     public static final String ALIAS = "openid_alias";
     public static final String AUTH_OBJECT = "authentication";
+    public static final String PROVIDER_NAME = "provider_name";
 
     
     public String loggedIn(HttpServletRequest request) {
@@ -49,10 +51,12 @@ public class OpenIDService {
 
             request.getSession().setAttribute(MAC_KEY, association.getRawMacKey());
             request.getSession().setAttribute(ALIAS, endpoint.getAlias());
+            request.getSession().setAttribute(PROVIDER_NAME, providerName);
 
             return manager.getAuthenticationUrl(endpoint, association);
         }
     }
+
 
     public void initializeUser(HttpServletRequest request) {
         OpenIdManager manager = new OpenIdManager();
@@ -66,7 +70,24 @@ public class OpenIDService {
         request.getSession().setAttribute("authentication", authentication);
     }
 
-    public void logout(HttpServletRequest request) {
-        
+
+    public String loggedOut(HttpServletRequest request) {
+        final String providerName = request.getParameter("providerId");
+
+        if (providerName == null) {
+            logger.info("Cannot logged out from the provider. Provider parameter undefined: " + providerName);
+            logger.info("Logout action will be in consumer server only.");
+            return "http://localhost:8080/openid-servlet/home";
+        } else {
+            if (providerName.equals("google")) {
+                return "https://www.google.com/accounts/Logout";
+            } else if (providerName.equals("yahoo!")) {
+                return "https://login.yahoo.com/config/login?logout=1";
+            } else {
+                RuntimeException re = new RuntimeException("Undefined provider name: " + providerName);
+                logger.error(re.toString());
+                throw re;
+            }
+        }
     }
 }

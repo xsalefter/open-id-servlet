@@ -12,13 +12,15 @@ import org.xsalefter.openidservlet.service.OpenIDService;
  */
 public class LogoutServlet extends HttpServlet {
 
+    private OpenIDService service = new OpenIDService();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         request.getSession().removeAttribute("authentication");
         request.getSession().removeAttribute(OpenIDService.MAC_KEY);
         request.getSession().removeAttribute(OpenIDService.ALIAS);
 
-        response.sendRedirect("http://localhost:8080/openid-servlet/home");
+        response.sendRedirect(service.loggedOut(request));
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
